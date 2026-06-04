@@ -1,0 +1,5 @@
+{
+  "name": "Afya Code",
+  "description": "A smart health information system using QR codes and NFC technology for instant medical access and hospital check-ins.",
+  "requestFramePermissions": []
+}
