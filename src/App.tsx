@@ -1,7 +1,6 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { QrCode, Wifi, HeartPulse, ShieldCheck, ArrowRight, Check, ChevronLeft, ChevronRight, ShoppingCart, Loader2, Sparkles } from "lucide-react";
-import { generateAfyaBandImage } from "./services/geminiService";
 import landingImage from "./assets/landingimage.png";
 import explainerImage from "./assets/Explainer.png";
 import slide1 from "./assets/slideshow1.png";
