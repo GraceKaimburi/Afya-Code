@@ -2,12 +2,12 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { QrCode, Wifi, HeartPulse, ShieldCheck, ArrowRight, Check, ChevronLeft, ChevronRight, ShoppingCart, Loader2, Sparkles } from "lucide-react";
 import { generateAfyaBandImage } from "./services/geminiService";
-import landingImage from "../landingimage.png";
-import explainerImage from "../Explainer.png";
-import slide1 from "../slideshow1.png";
-import slide2 from "../slideshow2.png";
-import slide3 from "../slideshow3.png";
-import slide4 from "../slideshow4.png";
+import landingImage from "./assets/landingimage.png";
+import explainerImage from "./assets/Explainer.png";
+import slide1 from "./assets/slideshow1.png";
+import slide2 from "./assets/slideshow2.png";
+import slide3 from "./assets/slideshow3.png";
+import slide4 from "./assets/slideshow4.png";
 
 const PRICING_TIERS = [
   {
