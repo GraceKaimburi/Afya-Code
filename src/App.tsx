@@ -1,15 +1,14 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { QrCode, Wifi, HeartPulse, ShieldCheck, ArrowRight, Check, ChevronLeft, ChevronRight, ShoppingCart, Loader2, Sparkles } from "lucide-react";
+import landingImage from "../landingpagehero.png";
+import explainerImage from "../explainer.png";
+import slide1 from "../slideshowimage1.png";
+import slide2 from "../slideshowimage2.png";
+import slide3 from "../slideshowimage3.png";
+import slide4 from "../slideshowimage4.png";
 
-const landingImageUrl = "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80";
-const explainerImageUrl = "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=80";
-const SLIDE_IMAGES = [
-  "https://images.unsplash.com/photo-1516557070060-1c0461849e17?auto=format&fit=crop&w=900&q=80",
-  "https://images.unsplash.com/photo-1517059224940-d4af9eec41e0?auto=format&fit=crop&w=900&q=80",
-  "https://images.unsplash.com/photo-1512427691650-1f904fbaa474?auto=format&fit=crop&w=900&q=80",
-  "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=900&q=80"
-];
+const SLIDE_IMAGES = [slide1, slide2, slide3, slide4];
 
 const PRICING_TIERS = [
   {
@@ -55,7 +54,7 @@ export default function App() {
   const [activeImage, setActiveImage] = useState(0);
   const [generatedImages, setGeneratedImages] = useState<(string | null)[]>(SLIDE_IMAGES.map((url) => url));
   const [loadingStates, setLoadingStates] = useState<boolean[]>([false, false, false, false]);
-  const [architectureImage, setArchitectureImage] = useState<string | null>(explainerImageUrl);
+  const [architectureImage, setArchitectureImage] = useState<string | null>(explainerImage);
   const [loadingArchitecture, setLoadingArchitecture] = useState(false);
   const productSectionRef = useRef<HTMLElement>(null);
 
@@ -69,7 +68,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
       <div className="w-full overflow-hidden">
-        <img src={landingImageUrl} alt="Landing" className="w-full h-72 object-cover" />
+        <img src={landingImage} alt="Landing" className="w-full h-72 object-cover" />
       </div>
 
       {/* Header */}
