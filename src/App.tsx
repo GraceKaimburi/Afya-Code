@@ -1,7 +1,15 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { QrCode, Wifi, HeartPulse, ShieldCheck, ArrowRight, Check, ChevronLeft, ChevronRight, ShoppingCart, Loader2, Sparkles } from "lucide-react";
-import { generateAfyaBandImage } from "./services/geminiService";
+
+const landingImageUrl = "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80";
+const explainerImageUrl = "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=80";
+const SLIDE_IMAGES = [
+  "https://images.unsplash.com/photo-1516557070060-1c0461849e17?auto=format&fit=crop&w=900&q=80",
+  "https://images.unsplash.com/photo-1517059224940-d4af9eec41e0?auto=format&fit=crop&w=900&q=80",
+  "https://images.unsplash.com/photo-1512427691650-1f904fbaa474?auto=format&fit=crop&w=900&q=80",
+  "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=900&q=80"
+];
 
 const PRICING_TIERS = [
   {
@@ -45,9 +53,9 @@ const PRICING_TIERS = [
 
 export default function App() {
   const [activeImage, setActiveImage] = useState(0);
-  const [generatedImages, setGeneratedImages] = useState<(string | null)[]>([null, null, null, null]);
+  const [generatedImages, setGeneratedImages] = useState<(string | null)[]>(SLIDE_IMAGES.map((url) => url));
   const [loadingStates, setLoadingStates] = useState<boolean[]>([false, false, false, false]);
-  const [architectureImage, setArchitectureImage] = useState<string | null>(null);
+  const [architectureImage, setArchitectureImage] = useState<string | null>(explainerImageUrl);
   const [loadingArchitecture, setLoadingArchitecture] = useState(false);
   const productSectionRef = useRef<HTMLElement>(null);
 
@@ -58,43 +66,12 @@ export default function App() {
   const nextImage = () => setActiveImage((prev) => (prev + 1) % PRICING_TIERS.length);
   const prevImage = () => setActiveImage((prev) => (prev - 1 + PRICING_TIERS.length) % PRICING_TIERS.length);
 
-  const fetchImages = async () => {
-    const newLoadingStates = [true, true, true, true];
-    setLoadingStates(newLoadingStates);
-    setLoadingArchitecture(true);
-    
-    // Fetch Architecture Image
-    const archPrompt = "A clean, professional infographic showing the 'Afya Code' system architecture. 1. A person buying a smart band/sticker. 2. Syncing the band with a mobile app. 3. The app showing a health recommender and monitoring dashboard. 4. A hospital staff scanning the band's QR code with a tablet for instant 1-minute check-in. Modern tech aesthetic, blue and white color palette.";
-    generateAfyaBandImage(archPrompt).then(url => setArchitectureImage(url)).finally(() => setLoadingArchitecture(false));
-
-    const promises = PRICING_TIERS.map(async (tier, idx) => {
-      try {
-        const url = await generateAfyaBandImage(tier.prompt);
-        setGeneratedImages(prev => {
-          const next = [...prev];
-          next[idx] = url;
-          return next;
-        });
-      } catch (err) {
-        console.error(`Failed to generate image for ${tier.name}:`, err);
-      } finally {
-        setLoadingStates(prev => {
-          const next = [...prev];
-          next[idx] = false;
-          return next;
-        });
-      }
-    });
-
-    await Promise.all(promises);
-  };
-
-  useEffect(() => {
-    fetchImages();
-  }, []);
-
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
+      <div className="w-full overflow-hidden">
+        <img src={landingImageUrl} alt="Landing" className="w-full h-72 object-cover" />
+      </div>
+
       {/* Header */}
       <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
