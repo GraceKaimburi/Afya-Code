@@ -1,7 +1,6 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { QrCode, Wifi, HeartPulse, ShieldCheck, ArrowRight, Check, ChevronLeft, ChevronRight, ShoppingCart, Loader2, Sparkles } from "lucide-react";
-import landingImage from "./assets/landingimage.png";
 import explainerImage from "./assets/Explainer.png";
 import slide1 from "./assets/slideshow1.png";
 import slide2 from "./assets/slideshow2.png";
@@ -67,10 +66,6 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
-      <div className="w-full overflow-hidden">
-        <img src={landingImage} alt="Landing" className="w-full h-72 object-cover" />
-      </div>
-
       {/* Header */}
       <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
